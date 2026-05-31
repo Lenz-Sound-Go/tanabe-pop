@@ -310,8 +310,8 @@ function createBalloon() {
   const faceType = r < 0.33 ? "takeshi" : r < 0.66 ? "kenji" : "sound";
   const config = FACE_CONFIG[faceType];
   
-  const size = randomBetween(52, 90);
-  const baseDuration = faceType === "takeshi" ? randomBetween(3500, 5000) : faceType === "sound" ? randomBetween(4200, 6000) : randomBetween(5500, 7500);
+  const size = randomBetween(70, 110);  // 顔を大きく
+  const baseDuration = faceType === "takeshi" ? randomBetween(3000, 4500) : faceType === "sound" ? randomBetween(3800, 5500) : randomBetween(5000, 7000);  // 大きい分少し速めに
   const duration = Math.max(2000, baseDuration - score * 30);
   const left = randomBetween(10, 90);
   const drift = randomBetween(-90, 90);

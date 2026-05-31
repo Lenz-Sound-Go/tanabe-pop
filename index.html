@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>タナベポップ 〜顔パーン！〜</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-label="タナベポップ">
+      <section class="hud" aria-label="Game status">
+        <div>
+          <span class="hud-label">Stage</span>
+          <strong id="stage">1</strong>
+        </div>
+        <div>
+          <span class="hud-label">Score</span>
+          <strong id="score">0</strong>
+        </div>
+        <div>
+          <span class="hud-label">Speed</span>
+          <strong id="level">1x</strong>
+        </div>
+      </section>
+
+      <section id="gameArea" class="game-area" aria-label="タップして割れ！">
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        <div class="cloud cloud-three"></div>
+        <div id="startPanel" class="panel">
+          <h1>タナベポップ<br>〜顔パーン！〜</h1>
+          <p>田邊兄弟の顔が風船に！<br>タップしてパーン！<br><br>
+          👓 <b>兄（メガネ）＝速い +2点</b><br>
+          🧶 <b>弟（おかっぱ）＝遅い +1点</b></p>
+          <button id="startButton" type="button">スタート！</button>
+        </div>
+      </section>
+
+      <p class="hint">タップして風船を割れ！兄は速いが高得点！弟は遅いが低得点！</p>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -275,8 +275,9 @@ let minSpawnDelay = 400;
 
 // 顔タイプごとのスコアと速度
 const FACE_CONFIG = {
-  takeshi: { score: 2, label: "兄", speedBonus: 0.75 },  // 兄: 速い・高得点
-  kenji:    { score: 1, label: "弟", speedBonus: 1.25 },  // 弟: 遅い・低得点
+  takeshi: { score: 2, label: "兄", speedBonus: 0.75 },  // 兄: 速い・+2点
+  kenji:    { score: 1, label: "弟", speedBonus: 1.25 },  // 弟: 遅い・+1点
+  sound:    { score: 3, label: "おじ", speedBonus: 1.0 },  // サウンドおじさん: ふつう・+3点
 };
 let gameRunning = false;
 let lastSpawnAt = 0;
@@ -305,11 +306,12 @@ function createBalloon() {
   const balloon = document.createElement("button");
   
   // Randomly pick one of two faces (50/50)
-  const faceType = Math.random() < 0.5 ? "takeshi" : "kenji";
+  const r = Math.random();
+  const faceType = r < 0.33 ? "takeshi" : r < 0.66 ? "kenji" : "sound";
   const config = FACE_CONFIG[faceType];
   
   const size = randomBetween(52, 90);
-  const baseDuration = faceType === "takeshi" ? randomBetween(3500, 5000) : randomBetween(5500, 7500);
+  const baseDuration = faceType === "takeshi" ? randomBetween(3500, 5000) : faceType === "sound" ? randomBetween(4200, 6000) : randomBetween(5500, 7500);
   const duration = Math.max(2000, baseDuration - score * 30);
   const left = randomBetween(10, 90);
   const drift = randomBetween(-90, 90);
@@ -342,6 +344,8 @@ function showPopScore(x, y, faceType) {
   popScore.style.top = `${y - bounds.top}px`;
   if (faceType === "takeshi") {
     popScore.style.color = "#FFD700";  // 兄は金色
+  } else if (faceType === "sound") {
+    popScore.style.color = "#FF69B4";  // おじさんはピンク
   }
   popScore.addEventListener("animationend", () => popScore.remove());
 
